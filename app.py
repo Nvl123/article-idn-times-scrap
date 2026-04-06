@@ -12,7 +12,7 @@ import pandas as pd
 import requests
 import streamlit as st
 from bs4 import BeautifulSoup
-from scraper import fetch_article_details
+from scraper import fetch_article_details, search_idntimes_candidates_via_driver
 
 
 def inject_custom_css():
@@ -354,6 +354,7 @@ def search_idntimes_candidates(query: str, max_results: int = 20):
         rows = []
         seen = set()
 
+        # Common Bing selector
         for a in soup.select("li.b_algo h2 a"):
             href = a.get("href", "").strip()
             title = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
@@ -363,10 +364,93 @@ def search_idntimes_candidates(query: str, max_results: int = 20):
             rows.append({"Title": title, "URL": href})
             if len(rows) >= max_results:
                 break
+        if rows:
+            return rows
+
+        # Generic fallback selector for alternate Bing markup
+        for a in soup.select("a[href]"):
+            href = a.get("href", "").strip()
+            if "idntimes.com" not in href.lower() or href in seen:
+                continue
+            title = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
+            if len(title) < 8:
+                continue
+            seen.add(href)
+            rows.append({"Title": title, "URL": href})
+            if len(rows) >= max_results:
+                break
+        return rows
+
+    def parse_bing_rss():
+        headers = dict(common_headers)
+        headers["Referer"] = "https://www.bing.com/"
+        rss_url = f"https://www.bing.com/search?q={quote_plus(q)}&format=rss"
+        res = requests.get(rss_url, headers=headers, timeout=20)
+        res.raise_for_status()
+        soup = BeautifulSoup(res.text, "xml")
+        rows = []
+        seen = set()
+        for item in soup.find_all("item"):
+            title_tag = item.find("title")
+            link_tag = item.find("link")
+            title = re.sub(r"\s+", " ", (title_tag.text if title_tag else "").strip())
+            href = (link_tag.text if link_tag else "").strip()
+            if not href or not title or "idntimes.com" not in href.lower() or href in seen:
+                continue
+            seen.add(href)
+            rows.append({"Title": title, "URL": href})
+            if len(rows) >= max_results:
+                break
+        return rows
+
+    def parse_idntimes_search():
+        headers = dict(common_headers)
+        headers["Referer"] = "https://www.idntimes.com/"
+        # Fallback to IDN Times own search page
+        search_url = f"https://www.idntimes.com/search?query={quote_plus(query)}"
+        res = requests.get(search_url, headers=headers, timeout=20)
+        res.raise_for_status()
+        soup = BeautifulSoup(res.text, "html.parser")
+        rows = []
+        seen = set()
+
+        for a in soup.select("a[href]"):
+            href = a.get("href", "").strip()
+            if href.startswith("/"):
+                href = "https://www.idntimes.com" + href
+            if "idntimes.com" not in href.lower():
+                continue
+            if any(skip in href for skip in ["/tag/", "/index", "/info/", "/sitemap", "/quiz", "install"]):
+                continue
+            title = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
+            if len(title) < 8:
+                continue
+            if href in seen:
+                continue
+            seen.add(href)
+            rows.append({"Title": title, "URL": href})
+            if len(rows) >= max_results:
+                break
         return rows
 
     errors = []
-    for name, fn in [("DuckDuckGo", parse_duckduckgo), ("Bing", parse_bing)]:
+
+    # Primary method: use Selenium/ChromeDriver to open Google Search.
+    # This avoids SSL handshake issues seen on direct requests in some environments.
+    try:
+        rows = search_idntimes_candidates_via_driver(query, max_results=max_results)
+        if rows:
+            return rows
+        errors.append("Google+Driver: tidak ada hasil")
+    except Exception as e:
+        errors.append(f"Google+Driver: {e}")
+
+    for name, fn in [
+        ("DuckDuckGo", parse_duckduckgo),
+        ("Bing", parse_bing),
+        ("Bing RSS", parse_bing_rss),
+        ("IDN Search", parse_idntimes_search),
+    ]:
         try:
             rows = fn()
             if rows:

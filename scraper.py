@@ -8,6 +8,7 @@ import time
 import os
 import concurrent.futures
 import re
+from urllib.parse import parse_qs, unquote, urlparse
 import requests
 from dateutil import parser as dateparser
 from datetime import datetime, timedelta
@@ -191,6 +192,77 @@ def scrape_article_titles(topic="all", max_scrolls=5):
         cards = _extract_article_cards(soup)
         print(f"[✓] Ditemukan {len(cards)} judul artikel unik.")
         return cards
+    finally:
+        driver.quit()
+
+
+def search_idntimes_candidates_via_driver(query, max_results=20):
+    """
+    Search Google via Selenium and return IDN Times result candidates.
+    Useful when direct HTTPS requests to search engines fail due to SSL/TLS issues.
+    """
+    driver = initialize_driver()
+    try:
+        q = f'site:idntimes.com "{query}"'
+        search_url = f"https://www.google.com/search?q={requests.utils.quote(q)}&num=10&hl=id"
+        print(f"[*] Membuka Google Search: {search_url}")
+        driver.get(search_url)
+        time.sleep(2)
+
+        rows = []
+        seen = set()
+
+        # Try up to 3 result pages to collect enough candidates.
+        for page_idx in range(3):
+            soup = BeautifulSoup(driver.page_source, "html.parser")
+            links = soup.select("a[href]")
+
+            for a in links:
+                href = a.get("href", "").strip()
+                if not href:
+                    continue
+
+                # Google often wraps links as /url?q=<target>&...
+                if href.startswith("/url?"):
+                    parsed = urlparse(href)
+                    q_params = parse_qs(parsed.query)
+                    target = q_params.get("q", [""])[0]
+                    href = unquote(target) if target else ""
+
+                if href.startswith("//"):
+                    href = "https:" + href
+                if href.startswith("/"):
+                    continue
+                if "idntimes.com" not in href.lower():
+                    continue
+                if href in seen:
+                    continue
+
+                h3 = a.find("h3")
+                title = ""
+                if h3:
+                    title = re.sub(r"\s+", " ", h3.get_text(" ", strip=True))
+                if not title:
+                    title = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
+                if len(title) < 8:
+                    continue
+
+                seen.add(href)
+                rows.append({"Title": title, "URL": href})
+                if len(rows) >= max_results:
+                    break
+
+            if len(rows) >= max_results:
+                break
+
+            # Go to next page (start=10,20,...) if needed.
+            next_start = (page_idx + 1) * 10
+            next_url = f"https://www.google.com/search?q={requests.utils.quote(q)}&num=10&hl=id&start={next_start}"
+            driver.get(next_url)
+            time.sleep(1.5)
+
+        print(f"[✓] Kandidat dari Google Search: {len(rows)}")
+        return rows
     finally:
         driver.quit()
 
