@@ -1,0 +1,70 @@
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Okin menjelaskan bahwa penjualan rumah anaknya dengan Rachel Vennya terjadi karena kesalahpahaman, meski ia mengaku sudah memberi tahu sebelumnya soal pengecekan rumah tersebut." name="description"/>
+<meta content="Muhammad Bimo Aprilianto" name="author"/>
+<meta content="Rachel Vennya,niko al hakim,Give me Perspective" name="keywords"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+<meta content="app-id=1035533846" name="apple-itunes-app"/>
+<meta content="utf-8" name="charset"/>
+<meta content="id" name="geo.country"/>
+<meta content="Indonesia" name="geo.placename"/>
+<meta content="382695658587663" name="fb:app_id"/>
+<meta content="599834330123935" name="fb:pages"/>
+<meta content="cb42fd23f2744a947ae4f0b581dab883" name="p:domain_verify"/>
+<meta content="https://play.google.com/store/apps/details?id=com.idntimes.idntimes&amp;hl=en&amp;gl=US" name="idn:android"/>
+<meta content="https://apps.apple.com/id/app/idn-baca-berita-live-stream/id1035533846" name="idn:ios"/>
+<meta content="https://www.idntimes.com/hype/entertainment/okin-buka-suara-soal-disebut-rachel-vennya-mau-jual-rumah-anak-00-sd4vv-sxnx6l" name="idn:fallback"/>
+<meta content="idnapp://news/019d5b74-047f-72a6-a5d7-e0fa29a11cef" name="idn:link"/>
+<meta content="idnapp" name="al:android:app_name"/>
+<meta content="com.idntimes.idntimes" name="al:android:package"/>
+<meta content="idnapp://article/hype/entertainment/okin-buka-suara-soal-disebut-rachel-vennya-mau-jual-rumah-anak-00-sd4vv-sxnx6l" name="al:android:url"/>
+<meta content="idnapp" name="al:ios:app_name"/>
+<meta content="1035533846" name="al:ios:app_store_id"/>
+<meta content="idnapp://article/hype/entertainment/okin-buka-suara-soal-disebut-rachel-vennya-mau-jual-rumah-anak-00-sd4vv-sxnx6l" name="al:ios:url"/>
+<meta content="https://www.idntimes.com/hype/entertainment/okin-buka-suara-soal-disebut-rachel-vennya-mau-jual-rumah-anak-00-sd4vv-sxnx6l" name="al:web:url"/>
+<meta content="IDN Times" name="property"/>
+<meta content="web" name="platform"/>
+<meta content="desktop" name="device"/>
+<meta content="Okin Buka Suara Disebut Mau Jual Rumah Anak, Rachel Vennya Respons Balik" name="screen_name"/>
+<meta content="article_detail" name="page_type"/>
+<meta content="default_full_keypoint" name="page_type_var"/>
+<meta content="Okin Buka Suara Disebut Mau Jual Rumah Anak, Rachel Vennya Respons Balik" name="content_title"/>
+<meta content="019d5b74-047f-72a6-a5d7-e0fa29a11cef" name="content_id"/>
+<meta content="okin-buka-suara-soal-disebut-rachel-vennya-mau-jual-rumah-anak" name="content_slug"/>
+<meta content="Rachel Vennya,niko al hakim,Give me Perspective" name="content_tag"/>
+<meta content="IDN Times" name="content_publisher"/>
+<meta content="Hype" name="content_category"/>
+<meta content="hype" name="content_category_id"/>
+<meta content="article" name="content_type"/>
+<meta content="editorial" name="content_type_var"/>
+<meta content="Entertainment" name="content_subcategory"/>
+<meta content="entertainment" name="content_subcategory_id"/>
+<meta content="2026-04-05 10:21:40" name="content_published_date"/>
+<meta content="2026-04-05 10:21:40" name="content_updated_date"/>
+<meta content="8bd0f16d-1041-43c5-b05a-8aca1a0756a8" name="content_creator_id"/>
+<meta content="sd4vv" name="content_creator_username"/>
+<meta content="Muhammad Bimo Aprilianto" name="content_creator_fullname"/>
+<meta content="writer" name="content_creator_role"/>
+<meta content="Zahrotustianah " name="content_editor"/>
+<meta content="0ea72564-3845-4140-87ec-466e0a103e3a" name="content_editor_id"/>
+<meta content="Zahrotustianah " name="content_last_editor"/>
+<meta content="0ea72564-3845-4140-87ec-466e0a103e3a" name="content_last_editor_id"/>
+<meta content="index, follow" name="googlebot"/>
+<meta content="index, follow" name="googlebot-news"/>
+<meta content="Okin Buka Suara Disebut Mau Jual Rumah Anak, Rachel Vennya Respons Balik" property="og:title"/>
+<meta content="Okin menjelaskan bahwa penjualan rumah anaknya dengan Rachel Vennya terjadi karena kesalahpahaman, meski ia mengaku sudah memberi tahu sebelumnya soal pengecekan rumah tersebut." property="og:description"/>
+<meta content="https://www.idntimes.com/hype/entertainment/okin-buka-suara-soal-disebut-rachel-vennya-mau-jual-rumah-anak-00-sd4vv-sxnx6l" property="og:url"/>
+<meta content="IDN Times" property="og:site_name"/>
+<meta content="https://image.idntimes.com/post/20260405/upload_b1e4e4ff1993f522340cab82c6158998_4e4af000-65e9-4bda-a1ad-212ce29081e7.jpg" property="og:image"/>
+<meta content="600" property="og:image:width"/>
+<meta content="400" property="og:image:height"/>
+<meta content="Okin Buka Suara Disebut Mau Jual Rumah Anak, Rachel Vennya Respons Balik" property="og:image:alt"/>
+<meta content="article" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="@idntimes" name="twitter:site"/>
+<meta content="Okin Buka Suara Disebut Mau Jual Rumah Anak, Rachel Vennya Respons Balik" name="twitter:title"/>
+<meta content="Okin menjelaskan bahwa penjualan rumah anaknya dengan Rachel Vennya terjadi karena kesalahpahaman, meski ia mengaku sudah memberi tahu sebelumnya soal pengecekan rumah tersebut." name="twitter:description"/>
+<meta content="https://image.idntimes.com/post/20260405/upload_b1e4e4ff1993f522340cab82c6158998_4e4af000-65e9-4bda-a1ad-212ce29081e7.jpg" name="twitter:image"/>
+<meta name="next-size-adjust"/>
+
+=== LD+JSON ===

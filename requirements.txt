@@ -1,0 +1,10 @@
+selenium
+beautifulsoup4
+pandas
+tqdm
+requests
+python-dateutil
+matplotlib
+seaborn
+webdriver-manager
+streamlit
